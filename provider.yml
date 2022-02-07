@@ -1,0 +1,43 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:root@euk01.com:7001/eureka/
+    # 在client进行配置,将自己真正的健康状态传递到server
+#    healthcheck:
+#      enabled: true
+
+server:
+  port: 85
+#  port: 90
+
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8080
+  application:
+    name: user-provider
+  # 配置zipkin查看url
+  zipkin:
+    base-url: http://localhost:9411/
+  # 采样比例
+  sleuth:
+    sampler:
+      rate: 1
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#  # 开启shutdown,支持远程关闭服务
+#  endpoint:
+#    shutdown:
+#      enabled: true
+
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          servlet:
+            DispatcherServlet: DEBUG
